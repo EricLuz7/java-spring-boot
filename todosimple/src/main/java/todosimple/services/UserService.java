@@ -49,5 +49,4 @@ public class UserService {
             throw new RuntimeException("Nao eh possivel excluir pois ha entidades relacionadas");
         }
     }
-    
 }
