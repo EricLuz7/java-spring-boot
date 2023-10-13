@@ -11,6 +11,7 @@ import todosimple.services.TaskService;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/task/")
@@ -44,9 +45,16 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {;
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.taskService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Task>> findAllByUserId(@PathVariable Long userId){
+        List<Task> objs = this.taskService.findAllByUserId(userId);
+        return ResponseEntity.ok().body(objs);
     }
 
 }

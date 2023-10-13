@@ -7,6 +7,7 @@ import todosimple.models.Task;
 import todosimple.models.User;
 import todosimple.repositories.TaskRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,6 +36,14 @@ public class TaskService {
         return this.taskRepository.save(newObj);
     }
 
+    public List<Task> findAllByUserId(Long userId){
+        List<Task> tasks = this.taskRepository.findByUser_Id(userId);
+        return tasks;
+    }
+
+
+
+
     public Task findById(Long id){
         Optional<Task> task = this.taskRepository.findById(id);
         return task.orElseThrow(()-> new RuntimeException(
@@ -50,6 +59,8 @@ public class TaskService {
             throw new RuntimeException("Nao eh possivel excluir pois ha entidades relacionadas");
         }
     }
+
+
 
 
 }
